@@ -10,6 +10,18 @@
 
 <body>
 	<h1>Block Tools</h1>
+	<div id="editorjs"></div>
+	<script>
+		const editor = new EditorJS({
+			holder: 'editorjs',
+			data: {},
+
+		});
+
+		editor.isReady
+			.then(() => console.log("Editorjs is ready for work"))
+			.catch((reason) => console.log(`Editorjs failed to initialize with reason: ${reason}`))
+	</script>
 </body>
 
 </html>
