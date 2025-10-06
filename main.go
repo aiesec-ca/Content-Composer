@@ -7,17 +7,28 @@ import (
 	"path/filepath"
 )
 
-const templDirName = "templ"
+const (
+	rootDir       = "./"
+	templDirName  = "templ"
+	staticDirName = "static"
+)
 
 func main() {
 	mux := http.NewServeMux()
 
-	templDir := filepath.Join("./", templDirName)
+	templDir := filepath.Join(rootDir, templDirName)
 
 	tmpl, _ := template.ParseGlob(templDir + "**/*.html")
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl.ExecuteTemplate(w, "index.html", nil)
+	})
+
+	staticDir := filepath.Join(rootDir, staticDirName)
+
+	staticDirFS := http.FileServer(http.Dir(staticDir))
+	mux.HandleFunc("/static/", func(w http.ResponseWriter, r *http.Request) {
+		http.StripPrefix("/static/", staticDirFS).ServeHTTP(w, r)
 	})
 
 	log.Println("Server running on http://localhost:8080")
