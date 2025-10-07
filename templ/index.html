@@ -5,12 +5,18 @@
 	<meta charset="UTF-8">
 	<title>Editor.js Experiments</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<link rel="stylesheet" href="/static/css/main.css" />
 	<script src="/static/js/editorjs.umd.js"></script>
 </head>
 
 <body>
-	<h1>Block Tools</h1>
-	<div id="editorjs"></div>
+	<header>
+		<h1>Block Tools</h1>
+	</header>
+	<main>
+		<div id="editorjs"></div>
+	</main>
 	<script>
 		const editor = new EditorJS({
 			holder: 'editorjs',
