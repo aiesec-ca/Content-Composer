@@ -31,7 +31,7 @@ func main() {
 	staticDirFS := http.FileServer(http.Dir(staticDir))
 	mux.HandleFunc("/static/", func(w http.ResponseWriter, r *http.Request) {
 		// Temp for now
-		if strings.HasSuffix(r.URL.Path, ".js") {
+		if strings.HasSuffix(r.URL.Path, ".js") || strings.HasSuffix(r.URL.Path, ".css") {
 			w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 			w.Header().Set("Pragma", "no-cache")
 			w.Header().Set("Expires", time.Unix(0, 0).Format(http.TimeFormat))
