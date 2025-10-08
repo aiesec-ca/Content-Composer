@@ -5,7 +5,10 @@ const editor = new EditorJS({
 	autofocus: true,
 	placeholder: 'Welcome to your favorite web editor',
 	tools: {
-		image: SimpleImage,
+		image: {
+			class: SimpleImage,
+			inlineToolbar: true
+		},
 	},
 	data: {
 		"time": 1759948806818,
@@ -13,7 +16,8 @@ const editor = new EditorJS({
 			{
 				type: "image",
 				data: {
-					url: "https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg"
+					url: "https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg",
+					caption: "Cool lady laying on her back"
 				}
 			}
 		],
