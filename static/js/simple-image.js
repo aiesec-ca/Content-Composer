@@ -6,8 +6,14 @@ class SimpleImage {
 		}
 	}
 
+	constructor({data}) {
+		this.data = data;
+	}
+
 	render() {
-		return document.createElement('input');
+		const input = document.createElement('input');
+		input.value = this.data && this.data.url ? this.data.url : '';
+		return input;
 	}
 
 	save(blockContent) {

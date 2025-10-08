@@ -7,7 +7,18 @@ const editor = new EditorJS({
 	tools: {
 		image: SimpleImage,
 	},
-	data: {},
+	data: {
+		"time": 1759948806818,
+		"blocks": [
+			{
+				type: "image",
+				data: {
+					url: "https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg"
+				}
+			}
+		],
+		"version": "2.31.0-rc.7"
+	},
 
 });
 
