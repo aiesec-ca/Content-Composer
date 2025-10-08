@@ -8,19 +8,28 @@ class SimpleImage {
 
 	constructor({data}) {
 		this.data = data;
+		this.wrapper = undefined;
 	}
 
 	render() {
-		const wrapper = document.createElement('div');
+		this.wrapper = document.createElement('div');
 		const input = document.createElement('input');
 
-		wrapper.classList.add('simple-image');
-		wrapper.appendChild(input);
+		this.wrapper.classList.add('simple-image');
+		this.wrapper.appendChild(input);
 
 		input.placeholder = 'Paste an image URL...';
 		input.value = this.data && this.data.url ? this.data.url : '';
 
-		return wrapper;
+		input.addEventListener('paste', (event) => {
+			this._createImage(event.clipboardData.getData('text'));
+		});
+
+		return this.wrapper;
+	}
+
+	_createImage(url) {
+		console.log(url);
 	}
 
 	save(blockContent) {
