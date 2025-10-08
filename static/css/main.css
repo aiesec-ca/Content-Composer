@@ -59,6 +59,6 @@
     border-radius: 3px;
     outline: none;
     font-size: 14px;
-    display: block;
-    text-align: center;
+    white-space: pre;
+    font-family: monospace;
 }

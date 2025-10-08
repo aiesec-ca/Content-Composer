@@ -37,6 +37,6 @@ const output = document.getElementById('output');
 
 saveButton.addEventListener('click', () => {
 	editor.save().then(savedData => {
-		output.innerHTML = JSON.stringify(savedData, null, 4);
+		output.textContent = JSON.stringify(savedData, null, 4);
 	})
 });
