@@ -34,7 +34,7 @@
     margin: 0 auto 15px;
 }
 
-.simple-image #save-button {
+#save-button {
     width: 30%;
     padding: 10px;
     border: 1px solid #e4e4e4;
@@ -49,7 +49,7 @@
     text-align: center;
 }
 
-.simple-image #output {
+#output {
     width: 100%;
     padding: 10px;
     border: 1px solid #e4e4e4;
