@@ -30,4 +30,12 @@ class SimpleImage {
 			url: input.value,
 		};
 	}
+
+	validate(savedData) {
+		if (!savedData.url.trim()) {
+			return false
+		}
+
+		return true;
+	}
 }
