@@ -30,6 +30,16 @@ class SimpleImage {
 
 	_createImage(url) {
 		console.log(url);
+		const image = document.createElement('img');
+		const caption = document.createElement('input');
+
+		image.src = url;
+		caption.placeholder = 'Caption...';
+
+		this.wrapper.innerHTML = '';
+		this.wrapper.appendChild(image);
+		this.wrapper.appendChild(caption);
+
 	}
 
 	save(blockContent) {
