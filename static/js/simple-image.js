@@ -17,6 +17,7 @@ class SimpleImage {
 
 		if (this.data && this.data.url) {
 			this._createImage(this.data.url, this.data.cation);
+			return this.wrapper;
 		}
 
 		const input = document.createElement('input');
@@ -24,7 +25,6 @@ class SimpleImage {
 
 		input.addEventListener('paste', (event) => {
 			this._createImage(event.clipboardData.getData('text'));
-			return this.wrapper;
 		});
 
 
