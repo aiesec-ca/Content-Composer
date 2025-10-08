@@ -13,28 +13,33 @@ class SimpleImage {
 
 	render() {
 		this.wrapper = document.createElement('div');
-		const input = document.createElement('input');
-
 		this.wrapper.classList.add('simple-image');
-		this.wrapper.appendChild(input);
 
+		if (this.data && this.data.url) {
+			this._createImage(this.data.url, this.data.cation);
+		}
+
+		const input = document.createElement('input');
 		input.placeholder = 'Paste an image URL...';
-		input.value = this.data && this.data.url ? this.data.url : '';
 
 		input.addEventListener('paste', (event) => {
 			this._createImage(event.clipboardData.getData('text'));
+			return this.wrapper;
 		});
+
+
+		this.wrapper.appendChild(input);
 
 		return this.wrapper;
 	}
 
-	_createImage(url) {
-		console.log(url);
+	_createImage(url, captionText) {
 		const image = document.createElement('img');
 		const caption = document.createElement('input');
 
 		image.src = url;
 		caption.placeholder = 'Caption...';
+		caption.value = captionText || '';
 
 		this.wrapper.innerHTML = '';
 		this.wrapper.appendChild(image);
@@ -43,10 +48,12 @@ class SimpleImage {
 	}
 
 	save(blockContent) {
-		const input = blockContent.querySelector('input');
+		const image = blockContent.querySelector('img');
+		const caption = blockContent.querySelector('input');
 
 		return {
-			url: input.value,
+			url: image.src,
+			caption: caption.value,
 		};
 	}
 
