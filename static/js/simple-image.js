@@ -35,11 +35,11 @@ class SimpleImage {
 
 	_createImage(url, captionText) {
 		const image = document.createElement('img');
-		const caption = document.createElement('input');
+		const caption = document.createElement('div');
 
 		image.src = url;
-		caption.placeholder = 'Caption...';
-		caption.value = captionText || '';
+		caption.contentEditable = true;
+		caption.innerHTMl = captionText || '';
 
 		this.wrapper.innerHTML = '';
 		this.wrapper.appendChild(image);
@@ -49,11 +49,11 @@ class SimpleImage {
 
 	save(blockContent) {
 		const image = blockContent.querySelector('img');
-		const caption = blockContent.querySelector('input');
+		const caption = blockContent.querySelector('[contentEditable]');
 
 		return {
 			url: image.src,
-			caption: caption.value,
+			caption: caption.innerHTMl || '',
 		};
 	}
 
