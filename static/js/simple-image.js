@@ -40,6 +40,7 @@ class SimpleImage {
 			let button = document.createElement('div');
 
 			button.classList.add('cdx-settings-button');
+			button.classList.toggle('cdx-settings-button--active', !!this.data[tune.name]);
 			button.innerHTML = tune.icon;
 			wrapper.appendChild(button);
 
@@ -56,6 +57,7 @@ class SimpleImage {
 
 	_toggleTune(tune) {
 		this.data[tune] = !this.data[tune];
+		this._acceptTuneView();
 	}
 
 	render() {
@@ -92,6 +94,13 @@ class SimpleImage {
 		this.wrapper.appendChild(image);
 		this.wrapper.appendChild(caption);
 
+		this._acceptTuneView();
+	}
+
+	_acceptTuneView() {
+		this.settings.forEach(tune => {
+			this.wrapper.classList.toggle(tune.name, !!this.data[tune.name]);
+		});
 	}
 
 	save(blockContent) {
