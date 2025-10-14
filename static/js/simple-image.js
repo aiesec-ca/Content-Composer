@@ -41,14 +41,14 @@ class SimpleImage {
 		this.settings.forEach(tune => {
 			let button = document.createElement('div');
 
-			button.classList.add('cdx-settings-button');
-			button.classList.toggle('cdx-settings-button--active', !!this.data[tune.name]);
+			button.classList.add(this.api.styles.settingsButton);
+			button.classList.toggle(this.api.styles.settingsButtonActive, !!this.data[tune.name]);
 			button.innerHTML = tune.icon;
 			wrapper.appendChild(button);
 
 			button.addEventListener('click', () => {
 				this._toggleTune(tune.name);
-				button.classList.toggle('cdx-settings-button--active');
+				button.classList.toggle(this.api.styles.settingsButtonActive);
 			});
 
 		});
@@ -102,7 +102,13 @@ class SimpleImage {
 	_acceptTuneView() {
 		this.settings.forEach(tune => {
 			this.wrapper.classList.toggle(tune.name, !!this.data[tune.name]);
+
+
+			if (tune.name == 'stretched') {
+				this.api.blocks.stretchBlock(this.api.blocks.getCurrentBlockIndex(), !!this.data.stretched);
+			}
 		});
+
 	}
 
 	save(blockContent) {
