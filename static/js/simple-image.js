@@ -6,6 +6,16 @@ class SimpleImage {
 		}
 	}
 
+	static get pasteConfig() {
+		return {
+			tags: ['IMG'],
+			files: {
+				mimeTypes: ['image/*'],
+				extensions: ['gif', 'jpg', 'png']
+			}
+		}
+	}
+
 	constructor({data, api}) {
 		this.data = {
 			url: data.url || '',
@@ -127,5 +137,40 @@ class SimpleImage {
 		}
 
 		return true;
+	}
+
+	onPaste(event) {
+		switch (event.type) {
+			case 'tag':
+				const imgTag = event.detail.data;
+
+				this._createImage(imgTag.src);
+				break;
+			case 'file':
+				const file = event.detail.file;
+				const reader = new FileReader();
+
+				reader.onload = (loadEvent) => {
+					this._createImage(loadEvent.target.result);
+				};
+
+				reader.readAsDataURL(file);
+				break;
+			// case 'file':
+			// 	const file = event.detail.file;
+			// 	const reader = new FileReader();
+
+			// 	reader.onload = (event) => {
+			// 		this._createImage(reader.result);
+			// 	}
+
+			// 	// reader.onload = (loadEvent) => {
+			// 	// 	this._createImage(loadEvent.target.result);
+			// 	// }
+
+			// 	reader.readAsDataURL(file);
+			// 	break;
+		}
+
 	}
 }
