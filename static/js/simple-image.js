@@ -26,7 +26,7 @@ class SimpleImage {
 		}
 	}
 
-	constructor({data, api}) {
+	constructor({data, api, config}) {
 		this.data = {
 			url: data.url || '',
 			caption: data.caption || '',
@@ -52,6 +52,7 @@ class SimpleImage {
 		];
 
 		this.api = api;
+		this.config = config;
 	}
 
 	renderSettings() {
@@ -92,7 +93,7 @@ class SimpleImage {
 		}
 
 		const input = document.createElement('input');
-		input.placeholder = 'Paste an image URL...';
+		input.placeholder = this.config.placeholder || 'Paste an image URL...';
 
 		input.addEventListener('paste', (event) => {
 			this._createImage(event.clipboardData.getData('text'));

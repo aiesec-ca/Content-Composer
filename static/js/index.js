@@ -17,7 +17,10 @@ const editor = new EditorJS({
 				type: "image",
 				data: {
 					url: "https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg",
-					caption: "Cool lady laying on her back"
+					caption: "Cool lady laying on her back",
+					config: {
+						placeholder: "Paste image URL",
+					}
 				}
 			}
 		],
