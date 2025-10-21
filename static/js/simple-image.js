@@ -93,7 +93,7 @@ class SimpleImage {
 		}
 
 		const input = document.createElement('input');
-		input.placeholder = this.config.placeholder || 'Paste an image URL...';
+		input.placeholder = this.api.i18n.t(this.config.placeholder || 'Paste an image URL...');
 
 		input.addEventListener('paste', (event) => {
 			this._createImage(event.clipboardData.getData('text'));
