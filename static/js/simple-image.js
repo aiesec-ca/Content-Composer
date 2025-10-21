@@ -11,7 +11,8 @@ class SimpleImage {
 			tags: ['IMG'],
 			files: {
 				mimeTypes: ['image/*'],
-				extensions: ['gif', 'jpg', 'png']
+				extensions: ['gif', 'jpg', 'png'],
+				patterns: {image: /https?:\/\/\S+\.(gif|jpe?g|tiff|png)$/i}
 			}
 		}
 	}
@@ -94,7 +95,13 @@ class SimpleImage {
 		return this.wrapper;
 	}
 
-	_createImage(url, captionText) {
+	_createImage(url, captionText, eventType) {
+		if (eventType != null || eventType != undefined) {
+			console.log("Pasted event type: ", eventType);
+		} else {
+			console.log("NOT A PASTED EVENT");
+		}
+
 		const image = document.createElement('img');
 		const caption = document.createElement('div');
 
@@ -144,32 +151,23 @@ class SimpleImage {
 			case 'tag':
 				const imgTag = event.detail.data;
 
-				this._createImage(imgTag.src);
+				this._createImage(imgTag.src, "", event.type);
 				break;
 			case 'file':
 				const file = event.detail.file;
 				const reader = new FileReader();
 
 				reader.onload = (loadEvent) => {
-					this._createImage(loadEvent.target.result);
+					this._createImage(loadEvent.target.result, "", event.type);
 				};
 
 				reader.readAsDataURL(file);
 				break;
-			// case 'file':
-			// 	const file = event.detail.file;
-			// 	const reader = new FileReader();
+			case 'pattern':
+				const src = event.detail.data;
 
-			// 	reader.onload = (event) => {
-			// 		this._createImage(reader.result);
-			// 	}
-
-			// 	// reader.onload = (loadEvent) => {
-			// 	// 	this._createImage(loadEvent.target.result);
-			// 	// }
-
-			// 	reader.readAsDataURL(file);
-			// 	break;
+				this._createImage(src);
+				break;
 		}
 
 	}
