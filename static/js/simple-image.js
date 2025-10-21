@@ -166,7 +166,7 @@ class SimpleImage {
 			case 'pattern':
 				const src = event.detail.data;
 
-				this._createImage(src);
+				this._createImage(src, "", event.type);
 				break;
 		}
 
