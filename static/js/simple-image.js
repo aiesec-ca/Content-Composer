@@ -19,6 +19,13 @@ class SimpleImage {
 		}
 	}
 
+	static get sanitize() {
+		return {
+			url: false,
+			caption: {},
+		}
+	}
+
 	constructor({data, api}) {
 		this.data = {
 			url: data.url || '',
@@ -134,17 +141,9 @@ class SimpleImage {
 		const image = blockContent.querySelector('img');
 		const caption = blockContent.querySelector('[contentEditable]');
 
-		const sanitizerConfig = {
-			b: false,
-			a: {
-				href: true,
-			},
-			i: true
-		}
-
 		return Object.assign(this.data, {
 			url: image.src,
-			caption: this.api.sanitizer.clean(caption.innerHTML || '', sanitizerConfig)
+			caption: caption.innerHTML || ''
 		});
 	}
 
