@@ -12,7 +12,9 @@ class SimpleImage {
 			files: {
 				mimeTypes: ['image/*'],
 				extensions: ['gif', 'jpg', 'png'],
-				patterns: {image: /https?:\/\/\S+\.(gif|jpe?g|tiff|png)$/i}
+				patterns: {
+					image: /https?:\/\/\S+\.(gif|jpe?g|tiff|png)$/i
+				}
 			}
 		}
 	}
