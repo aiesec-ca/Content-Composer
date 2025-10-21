@@ -134,9 +134,17 @@ class SimpleImage {
 		const image = blockContent.querySelector('img');
 		const caption = blockContent.querySelector('[contentEditable]');
 
+		const sanitizerConfig = {
+			b: false,
+			a: {
+				href: true,
+			},
+			i: true
+		}
+
 		return Object.assign(this.data, {
 			url: image.src,
-			caption: caption.innerHTMl || '',
+			caption: this.api.sanitizer.clean(caption.innerHTML || '', sanitizerConfig)
 		});
 	}
 
