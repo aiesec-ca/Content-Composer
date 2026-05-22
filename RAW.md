@@ -7,26 +7,26 @@ Here are some rough ideas on how the content-composer engine should work based o
 -
 
 
-#TODO:
+# TODO:
 
 ## Content-Composer: Website Editor and Site builder
 
 ### Content-Composer Engine:
-[] Implement the initial version of the compiler that parses and compiles between the editor JS data provided and the content composer engine's matching template definitions for EditorJS tools (Block tools)
-[] Add examples and tests for further documentation of the usage 
-  [] Layout system, page definitions and actions 
-  [] page definitions and actions (how to structure code to define a specific page, if making custom, or how to use the editor to define one)
-  [] Site building (how to structure code to define a specific site, if making custom, or how to use the editor to define one)
-  [] Base tools (custom imlementations of Text and typography, list tools, Media and Embedded, Table, Chart, Button (with custom action setter), Forms)
-  [] Components definitions (combining and integrating base tools to get a custom plugin), 
-  [] Themes (how to structure code to put related plugins together))
-[] Provide a spec on how the plugin system works with the former rule
+- [] Implement the initial version of the compiler that parses and compiles between the editor JS data provided and the content composer engine's matching template definitions for EditorJS tools (Block tools)
+- [] Add examples and tests for further documentation of the usage 
+  - [] Layout system, page definitions and actions 
+  - [] page definitions and actions (how to structure code to define a specific page, if making custom, or how to use the editor to define one)
+  - [] Site building (how to structure code to define a specific site, if making custom, or how to use the editor to define one)
+  - [] Base tools (custom imlementations of Text and typography, list tools, Media and Embedded, Table, Chart, Button (with custom action setter), Forms)
+  - [] Components definitions (combining and integrating base tools to get a custom plugin), 
+  - [] Themes (how to structure code to put related plugins together))
+- [] Provide a spec on how the plugin system works with the former rule
 
 
 ### Content-Composer Worksapce:
-[] Make a nice looking interface integrating all the usages defined earlier
-[] Create components and themes for a sample new and old aiesec.ca page (and site) 
-[] Provide a comprehensive tutorial on how to build such a page and leverage tools for marketing
+- [] Make a nice looking interface integrating all the usages defined earlier
+- [] Create components and themes for a sample new and old aiesec.ca page (and site) 
+- [] Provide a comprehensive tutorial on how to build such a page and leverage tools for marketing
 
 ## Auth Manager: Identity management for access to aie.tools' services
 # Role Management: 
