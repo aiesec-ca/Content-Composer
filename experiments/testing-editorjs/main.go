@@ -1,0 +1,47 @@
+package main
+
+import (
+	"html/template"
+	"log"
+	"net/http"
+	"path/filepath"
+	"strings"
+	"time"
+)
+
+const (
+	rootDir       = "./"
+	templDirName  = "templ"
+	staticDirName = "static"
+)
+
+func main() {
+	mux := http.NewServeMux()
+
+	templDir := filepath.Join(rootDir, templDirName)
+
+	tmpl, _ := template.ParseGlob(templDir + "**/*.html")
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		tmpl.ExecuteTemplate(w, "index.html", nil)
+	})
+
+	staticDir := filepath.Join(rootDir, staticDirName)
+
+	staticDirFS := http.FileServer(http.Dir(staticDir))
+	mux.HandleFunc("/static/", func(w http.ResponseWriter, r *http.Request) {
+		// Temp for now
+		if strings.HasSuffix(r.URL.Path, ".js") || strings.HasSuffix(r.URL.Path, ".css") {
+			w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+			w.Header().Set("Pragma", "no-cache")
+			w.Header().Set("Expires", time.Unix(0, 0).Format(http.TimeFormat))
+		}
+		http.StripPrefix("/static/", staticDirFS).ServeHTTP(w, r)
+	})
+
+	log.Println("Server running on http://localhost:8080")
+	if err := http.ListenAndServe(":8080", mux); err != nil {
+		log.Fatal(err)
+	}
+
+}

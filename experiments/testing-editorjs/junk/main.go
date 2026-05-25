@@ -13,11 +13,13 @@ var (
 
 func renderTemplate(w http.ResponseWriter, tmpl string, data any) {
 	tmplPath := filepath.Join(tmplDir, "editor-js-examples", tmpl)
+
 	t, err := template.ParseFiles(tmplPath)
 	if err != nil {
 		http.Error(w, "Template parsing error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
+
 	err = t.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Template execution error: "+err.Error(), http.StatusInternalServerError)
